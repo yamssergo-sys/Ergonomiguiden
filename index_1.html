@@ -1,0 +1,1079 @@
+<title>Ergonomiguiden</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#F3F8F4;
+    --surface:#FFFFFF;
+    --surface-2:#E7F1E9;
+    --ink:#2B3B36;
+    --muted:#65796F;
+    --primary:#4C8577;
+    --primary-dark:#356156;
+    --accent:#F0A868;
+    --accent-2:#5C8A6B;
+    --bad:#C1573F;
+    --border:#DCEAE0;
+    --tint-a:#E4EFEA; --tint-b:#FBEADD; --tint-c:#E9F1E1;
+    --shadow: 0 1px 2px rgba(43,59,54,0.06), 0 8px 22px rgba(43,59,54,0.08);
+    --fig-a-skin:#E8B48C; --fig-a-hair:#3B2A20; --fig-a-top:#4C8577; --fig-a-top-dk:#356156;
+    --fig-b-skin:#C97F52; --fig-b-hair:#332217; --fig-b-top:#C97B63; --fig-b-top-dk:#A15D49;
+    --fig-shirt:#FBF6EC; --fig-pants:#42524D; --fig-shoe:#2B3532; --fig-mark:#7A5A46;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12201A; --surface:#182B23; --surface-2:#20362C; --ink:#EAF2ED; --muted:#9FB8AC;
+      --primary:#7BBBA7; --primary-dark:#57937F; --accent:#F3B478; --accent-2:#84C093;
+      --bad:#E08268; --border:#2B4437; --tint-a:#1D3229; --tint-b:#33291D; --tint-c:#22331F;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 26px rgba(0,0,0,.4);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12201A; --surface:#182B23; --surface-2:#20362C; --ink:#EAF2ED; --muted:#9FB8AC;
+    --primary:#7BBBA7; --primary-dark:#57937F; --accent:#F3B478; --accent-2:#84C093;
+    --bad:#E08268; --border:#2B4437; --tint-a:#1D3229; --tint-b:#33291D; --tint-c:#22331F;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 26px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+
+  *{ box-sizing: border-box; }
+  body{ background: var(--bg); color: var(--ink); font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  h1,h2,h3, .brand{ font-family: "Archivo", "Public Sans", sans-serif; text-wrap: balance; letter-spacing: -0.01em; }
+  p{ max-width: 62ch; }
+  a{ color: var(--primary-dark); }
+  .visually-hidden{ position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .lbl{ text-transform:uppercase; letter-spacing:.06em; font-size:11.5px; font-weight:700; color:var(--accent); display:block; margin-bottom:4px; }
+
+  .app{ display:flex; min-height: 100%; }
+  nav.side{
+    width: 232px; flex: 0 0 232px; padding: 24px 16px;
+    border-right: 1px solid var(--border); background: var(--surface);
+    position: sticky; top: env(safe-area-inset-top, 0px);
+    align-self: flex-start; height: 100dvh;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; font-size: 19px; font-weight: 800; color: var(--primary-dark); margin: 4px 4px 22px; }
+  :root[data-theme="dark"] .brand{ color: var(--ink); }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .brand{ color: var(--ink); } }
+  nav.side ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+  nav.side a{ display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--muted); font-weight:600; font-size: 14.5px; padding:10px 12px; border-radius:10px; }
+  nav.side a svg{ flex:0 0 auto; opacity:.85; }
+  nav.side a.active{ background: var(--surface-2); color: var(--primary-dark); }
+  :root[data-theme="dark"] nav.side a.active{ color: var(--ink); }
+  nav.side a:hover{ background: var(--surface-2); }
+  .nav-tag{ margin-top: 22px; padding: 12px 14px; border-radius: 12px; background: var(--surface-2); font-size: 12px; color: var(--muted); line-height: 1.45; }
+  nav.top{ display:none; }
+
+  main{ flex: 1 1 auto; min-width: 0; padding: 40px 48px 80px; }
+  .view{ max-width: 920px; }
+  .eyebrow{ text-transform: uppercase; letter-spacing: .09em; font-size: 12px; font-weight: 700; color: var(--accent); }
+  h1{ font-size: clamp(28px,4vw,38px); margin: 8px 0 10px; color: var(--primary-dark); }
+  :root[data-theme="dark"] h1{ color:var(--ink); }
+  h2{ font-size: 21px; margin: 0 0 6px; }
+  h3{ font-size: 15.5px; margin: 0; }
+  .lede{ color: var(--muted); font-size: 16.5px; margin-bottom: 8px; }
+
+  /* ---- home hero ---- */
+  .hero{ display:grid; grid-template-columns: 1.1fr 1fr; gap:28px; align-items:center; margin-bottom: 10px; }
+  .hero-art{ display:flex; justify-content:center; }
+  .hero-art svg{ max-width:100%; height:auto; }
+
+  .why{ display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 26px 0 36px; }
+  .why .stat{ background: var(--surface); border:1px solid var(--border); border-radius:14px; padding: 16px 16px 14px; box-shadow: var(--shadow); }
+  .why .stat b{ display:block; font-family:"Archivo",sans-serif; font-size:20px; color:var(--primary-dark); margin-bottom:4px; }
+  .why .stat span{ font-size: 13px; color: var(--muted); }
+
+  .cards{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-top: 8px; }
+  .card{ background: var(--surface); border:1px solid var(--border); border-radius:16px; padding: 20px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:10px; text-decoration:none; color:inherit; }
+  .card .ic{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; }
+  .card.c1 .ic{ background: var(--tint-a); color: var(--primary-dark); }
+  .card.c2 .ic{ background: var(--tint-b); color: #B97324; }
+  .card.c3 .ic{ background: var(--tint-c); color: var(--accent-2); }
+  .card h3{ font-size:16.5px; margin:0; color:var(--ink); }
+  .card p{ font-size: 13.5px; color: var(--muted); margin:0; }
+  .card .go{ margin-top:auto; font-size:13px; font-weight:700; color: var(--primary-dark); }
+
+  .panel{ background: var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow: var(--shadow); padding: 26px 26px 24px; margin-bottom: 22px; }
+  .panel > p.expl{ font-size:14.5px; color:var(--muted); margin: 2px 0 14px; }
+  .diagram{ display:flex; justify-content:center; padding: 6px 0 4px; }
+  .diagram svg{ max-width:100%; height:auto; }
+  .steps{ margin: 4px 0 0; padding: 0; list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .steps li{ display:flex; gap:12px; align-items:flex-start; }
+  .steps .n{ flex:0 0 auto; width:26px; height:26px; border-radius:50%; background:var(--primary); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .steps p{ margin:0; font-size:14.5px; }
+  .steps p b{ color:var(--ink); }
+
+  .story{ display:grid; grid-template-columns: repeat(5,1fr); gap:10px; margin-top:6px; }
+  .story figure{ margin:0; text-align:center; background:var(--surface-2); border-radius:14px; padding:10px 6px 12px; }
+  .story figcaption{ font-size:12px; font-weight:700; margin-top:6px; line-height:1.3; }
+  .story .step-n{ display:inline-flex; width:18px; height:18px; border-radius:50%; background:var(--primary); color:#fff; font-size:10.5px; font-weight:700; align-items:center; justify-content:center; margin-bottom:4px; }
+
+  .checklist{ margin-top:6px; }
+  .checklist h3{ font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:0 0 10px; }
+  .checklist label{ display:flex; align-items:flex-start; gap:10px; padding:9px 0; font-size:14.5px; border-top: 1px solid var(--border); cursor:pointer; }
+  .checklist label:first-of-type{ border-top:none; }
+  .checklist input{ margin-top:3px; accent-color: var(--primary); width:16px; height:16px; flex:0 0 auto; }
+  .checklist input:checked + span{ color: var(--muted); text-decoration: line-through; }
+
+  .compare{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin: 10px 0 6px; }
+  .compare figure{ margin:0; text-align:center; }
+  .compare figcaption{ font-size:13px; font-weight:700; margin-top:8px; }
+  .compare .bad figcaption{ color:var(--bad); }
+  .compare .good figcaption{ color: var(--accent-2); }
+
+  .subhead{ display:flex; align-items:center; gap:10px; margin: 30px 0 4px; }
+  .subhead:first-child{ margin-top:0; }
+  .subhead .num{ flex:0 0 auto; width:28px; height:28px; border-radius:9px; background:var(--surface-2); color:var(--primary-dark); font-family:"Archivo",sans-serif; font-weight:800; font-size:13.5px; display:flex; align-items:center; justify-content:center; }
+
+  .aid-block{ padding: 18px 0; border-top:1px solid var(--border); }
+  .aid-block:first-of-type{ border-top:none; padding-top:4px; }
+  .aid-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; align-items:center; }
+  .aid-grid .txt p{ font-size:14px; margin:0 0 8px; }
+  .aid-grid .txt p:last-child{ margin-bottom:0; }
+  .aid-grid .txt b{ color:var(--ink); }
+
+  .at-check{ display:flex; flex-direction:column; gap:0; margin-top:8px; }
+  .at-row{ display:grid; grid-template-columns: 78px 1fr 1fr 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--border); align-items:flex-start; }
+  .at-row:first-child{ border-top:none; }
+  .at-row .part{ font-weight:700; font-size:14px; padding-top:2px; }
+  .at-pill{ display:flex; gap:7px; font-size:12.5px; align-items:flex-start; line-height:1.35; }
+  .at-pill .dot{ flex:0 0 auto; width:9px; height:9px; border-radius:50%; margin-top:4px; }
+  .at-pill.good .dot{ background:var(--accent-2); }
+  .at-pill.warn .dot{ background:var(--accent); }
+  .at-pill.bad .dot{ background:var(--bad); }
+  .at-legend{ display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--muted); margin:2px 0 4px; }
+  .at-legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; }
+  .at-legend .dot.good{ background:var(--accent-2); }
+  .at-legend .dot.warn{ background:var(--accent); }
+  .at-legend .dot.bad{ background:var(--bad); }
+  .source-note{ font-size:12px; color:var(--muted); margin-top:14px; }
+
+  .at-details summary{ cursor:pointer; font-weight:700; font-size:13.5px; color:var(--primary-dark); list-style:none; margin-top:4px; display:inline-flex; align-items:center; gap:6px; }
+  .at-details summary::-webkit-details-marker{ display:none; }
+  .at-details summary::before{ content:"▸"; font-size:11px; transition: transform .15s ease; }
+  .at-details[open] summary::before{ transform: rotate(90deg); }
+  .at-details[open] summary{ margin-bottom:4px; }
+
+  .ex-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:6px; }
+  .ex-card{ text-align:center; padding: 16px 10px 12px; border:1px solid var(--border); border-radius:14px; background: var(--surface-2); }
+  .ex-card h3{ font-size:13.5px; margin: 8px 0 4px; }
+  .ex-card p{ font-size:12px; color:var(--muted); margin:0; }
+  .ex-card p.why{ font-size:11px; color:var(--muted); margin-top:4px; opacity:.85; }
+
+  .aid-carousel-wrap{ position:relative; margin: 4px -6px 0; }
+  .aid-carousel{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x proximity; padding: 6px 30px 14px; scroll-behavior:smooth; }
+  .aid-card{ flex:0 0 auto; width: 270px; scroll-snap-align:start; background:var(--surface-2); border-radius:16px; padding:18px 18px 16px; }
+  .aid-card .diagram{ padding:8px 0 4px; }
+  .aid-card .compare{ grid-template-columns:1fr 1fr; gap:8px; margin:8px 0 0; }
+  .aid-card .compare svg{ width:100%; height:auto; }
+  .aid-card .compare figcaption{ font-size:11px; }
+  .aid-card .txt p{ font-size:13px; margin:0 0 7px; }
+  .aid-card .txt p:last-child{ margin-bottom:0; }
+  .aid-card h2{ font-size:17px; }
+  .carousel-btn{ position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--surface); color:var(--primary-dark); font-size:17px; line-height:1; cursor:pointer; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; z-index:2; }
+  .carousel-btn.prev{ left:-6px; }
+  .carousel-btn.next{ right:-6px; }
+  .carousel-hint{ font-size:12px; color:var(--muted); margin:8px 0 0; }
+  .save-note{ font-size:11px; color:var(--muted); margin:10px 0 0; opacity:.85; }
+
+  .reminder{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top: 6px; padding: 16px 18px; border-radius:14px; background: var(--surface-2); }
+  .reminder select, .reminder button{ font: inherit; font-weight:700; font-size:14px; border-radius:10px; border:1px solid var(--border); padding: 9px 14px; background: var(--surface); color: var(--ink); }
+  .reminder button{ background: var(--primary); color:#fff; border-color: var(--primary); cursor:pointer; }
+  .reminder button:disabled{ opacity:.55; cursor:default; }
+  .reminder .status{ font-size:13px; color: var(--muted); flex-basis:100%; }
+  .reminder .countdown{ font-weight:800; font-size:18px; font-variant-numeric: tabular-nums; color: var(--primary-dark); padding:6px 14px; border-radius:10px; background: var(--surface); border:1px solid var(--border); }
+  .banner{ display:none; position:fixed; right:20px; bottom:20px; max-width:320px; align-items:center; gap:10px; padding:14px 18px; border-radius:14px; background: var(--accent); color:#3A2306; font-weight:700; font-size:14px; box-shadow:0 12px 32px rgba(0,0,0,.28); z-index:999; cursor:pointer; }
+  .banner.show{ display:flex; animation: bannerPop .25s ease; }
+  @keyframes bannerPop{ from{ transform:translateY(14px); opacity:0; } to{ transform:none; opacity:1; } }
+  @media (max-width:860px){ .banner{ left:14px; right:14px; bottom:14px; max-width:none; } }
+
+  footer.credit{ max-width:920px; margin-top: 8px; padding-top: 18px; border-top:1px solid var(--border); color: var(--muted); font-size: 12.5px; }
+
+  [hidden]{ display:none !important; }
+  @media (prefers-reduced-motion: reduce){ * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; } }
+
+  @media (max-width: 860px){
+    .app{ flex-direction:column; }
+    nav.side{ display:none; }
+    nav.top{ display:flex; gap:6px; overflow-x:auto; -webkit-overflow-scrolling:touch; position: sticky; top: env(safe-area-inset-top, 0px); z-index:5; background: var(--surface); border-bottom:1px solid var(--border); padding: 10px 12px; align-items:center; }
+    nav.top .brand{ margin: 0 8px 0 2px; font-size:16px; white-space:nowrap; }
+    nav.top a{ white-space:nowrap; text-decoration:none; color:var(--muted); font-weight:600; font-size:13.5px; padding:8px 12px; border-radius:999px; background:var(--surface-2); }
+    nav.top a.active{ background:var(--primary); color:#fff; }
+    main{ padding: 28px 18px 60px; }
+    .hero{ grid-template-columns: 1fr; }
+    .hero-art{ order:-1; }
+    .why{ grid-template-columns: 1fr; }
+    .cards{ grid-template-columns: 1fr; }
+    .compare{ grid-template-columns: 1fr; }
+    .aid-grid{ grid-template-columns: 1fr; }
+    .at-row{ grid-template-columns: 1fr; gap:6px; }
+    .at-row .part{ padding-top:0; }
+    .ex-grid{ grid-template-columns: 1fr 1fr; }
+    .story{ grid-template-columns: 1fr 1fr; }
+    .carousel-btn{ display:none; }
+    .aid-carousel{ padding: 6px 4px 14px; }
+  }
+
+  @media print{
+    nav.side, nav.top, .carousel-btn, .carousel-hint, .reminder, #reminder-banner, .save-note{ display:none !important; }
+    .app{ display:block; }
+    main{ padding:0; max-width:100%; }
+    section.view{ display:block !important; page-break-after: always; }
+    section.view:last-of-type{ page-break-after: auto; }
+    .aid-carousel{ display:grid; grid-template-columns: 1fr 1fr; overflow:visible; }
+    .aid-card{ width:auto; break-inside: avoid; }
+    .ex-card, .panel, .card{ break-inside: avoid; }
+    .at-details summary{ display:none; }
+    .at-details{ display:block; }
+    body{ background:#fff; color:#000; }
+  }
+</style>
+
+<div class="app">
+  <nav class="side" aria-label="Sektioner">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 20V10a1 1 0 0 1 1-1h3V6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3h3a1 1 0 0 1 1 1v10" stroke="var(--primary)" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 20h20" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Ergonomiguiden
+    </div>
+    <ul>
+      <li><a href="#forside" data-route="forside"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Forside</a></li>
+      <li><a href="#stol-bord" data-route="stol-bord"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 4v10M6 14a4 4 0 0 0 4 4h4M18 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Stol &amp; bord</a></li>
+      <li><a href="#hjaelpemidler" data-route="hjaelpemidler"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.8"/><circle cx="19.5" cy="15.5" r="3" stroke="currentColor" stroke-width="1.8"/></svg>Hjælpemidler</a></li>
+      <li><a href="#ovelser" data-route="ovelser"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v6l4 4M12 14l-4 4M8 10l4 1 4-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Øvelser</a></li>
+    </ul>
+    <div class="nav-tag">Løsningsforslag udviklet af Studiegruppe 4 til administrationsafdelingen, JBT Marel.</div>
+  </nav>
+
+  <nav class="top" aria-label="Sektioner (mobil)">
+    <span class="brand">Ergonomiguiden</span>
+    <a href="#forside" data-route="forside">Forside</a>
+    <a href="#stol-bord" data-route="stol-bord">Stol &amp; bord</a>
+    <a href="#hjaelpemidler" data-route="hjaelpemidler">Hjælpemidler</a>
+    <a href="#ovelser" data-route="ovelser">Øvelser</a>
+  </nav>
+
+  <main>
+    <!-- FORSIDE -->
+    <section class="view" id="view-forside">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Administrationsafdelingen · JBT Marel</div>
+          <h1>Din guide til en bedre arbejdsdag</h1>
+          <p class="lede">De fleste ergonomiske hjælpemidler findes allerede på din arbejdsplads. Denne guide viser roligt og enkelt, hvordan du bruger dem rigtigt.</p>
+        </div>
+        <div class="hero-art">
+          <svg width="360" height="230" viewBox="0 0 360 230" role="img" aria-label="To kolleger, der arbejder ergonomisk rigtigt ved deres skriveborde">
+            <ellipse cx="90" cy="205" rx="150" ry="14" fill="var(--tint-a)"/>
+            <circle cx="330" cy="45" r="36" fill="var(--tint-b)"/>
+            <circle cx="60" cy="40" r="30" fill="var(--tint-c)"/>
+            <!-- desk B (standing) -->
+            <rect x="320" y="158" width="8" height="47" rx="2" fill="var(--border)"/>
+            <rect x="298" y="148" width="55" height="10" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+            <rect x="306" y="110" width="40" height="34" rx="4" fill="var(--surface-2)" stroke="var(--border)"/>
+            <ellipse cx="324" cy="207" rx="20" ry="6" fill="var(--accent)" opacity=".35"/>
+            <ellipse cx="272" cy="207" rx="26" ry="7" fill="var(--accent)" opacity=".5"/>
+            <path d="M262,190 C260,178,259,168,261,158" stroke="var(--fig-pants)" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <path d="M280,190 C282,178,283,168,281,158" stroke="var(--fig-pants)" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <ellipse cx="262" cy="193" rx="7" ry="3.6" fill="var(--fig-shoe)"/>
+            <ellipse cx="280" cy="193" rx="7" ry="3.6" fill="var(--fig-shoe)"/>
+            <path d="M255,158 C255,140,262,128,271,128 C280,128,287,140,287,158 Z" fill="var(--fig-b-top)"/>
+            <path d="M280,145 L287,158 L279,132 Z" fill="var(--fig-b-top-dk)" opacity=".5"/>
+            <path d="M263,132 C266,120,270,118,271,124 C272,118,276,120,279,132" stroke="var(--fig-shirt)" stroke-width="3" fill="none"/>
+            <path d="M258,132 C254,140,254,148,262,154" stroke="var(--fig-b-top)" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M284,132 C292,137,298,141,300,145" stroke="var(--fig-b-top)" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <circle cx="301" cy="146" r="5" fill="var(--fig-b-skin)"/>
+            <circle cx="271" cy="112" r="16" fill="var(--fig-b-skin)"/>
+            <circle cx="266" cy="110" r="1.5" fill="#3A2A20"/>
+            <circle cx="276" cy="110" r="1.5" fill="#3A2A20"/>
+            <path d="M265,117 q6,4 12,0" stroke="var(--fig-mark)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <path d="M 254.2 106.9 C 252.2 98.4 263 92 271 92 C 279 92 289.8 98.4 287.8 106.9 L 287.8 136 C 287.8 138.4 281 137.6 279 132 L 279 106.9 L 263 106.9 L 263 132 C 261 137.6 254.2 138.4 254.2 136 Z" fill="var(--fig-b-hair)"/>
+            <!-- desk A (seated) -->
+            <rect x="18" y="150" width="66" height="10" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+            <rect x="42" y="128" width="40" height="26" rx="4" fill="var(--surface-2)" stroke="var(--border)"/>
+            <rect x="10" y="192" width="70" height="10" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+            <path d="M18 192 C16 178,16 164,26 154" fill="none" stroke="var(--border)" stroke-width="8" stroke-linecap="round"/>
+            <path d="M60,168 C54,178,50,188,53,202" stroke="var(--fig-pants)" stroke-width="11" stroke-linecap="round" fill="none"/>
+            <path d="M36,158 C44,164,52,167,60,168" fill="none" stroke="var(--fig-pants)" stroke-width="12" stroke-linecap="round"/>
+            <ellipse cx="53" cy="204" rx="9" ry="4" fill="var(--fig-shoe)"/>
+            <path d="M34,132 C46,136,54,141,58,147" fill="none" stroke="var(--fig-a-top)" stroke-width="11" stroke-linecap="round"/>
+            <path d="M58,147 C68,145,76,143,82,142" fill="none" stroke="var(--fig-a-top)" stroke-width="9" stroke-linecap="round"/>
+            <circle cx="83" cy="142" r="5" fill="var(--fig-a-skin)"/>
+            <path d="M22,127 C22,124,28,121,36,121 C44,121,50,124,50,127 L46,158 C42,161,30,161,26,158 Z" fill="var(--fig-a-top)"/>
+            <path d="M42,150 L46,158 L38,144 Z" fill="var(--fig-a-top-dk)" opacity=".5"/>
+            <path d="M32,124 L36,132 L40,124 Z" fill="var(--fig-shirt)"/>
+            <rect x="34" y="130" width="4" height="13" fill="var(--accent)"/>
+            <circle cx="36" cy="108" r="14" fill="var(--fig-a-skin)"/>
+            <circle cx="32" cy="106" r="1.4" fill="#3A2A20"/>
+            <circle cx="40" cy="106" r="1.4" fill="#3A2A20"/>
+            <path d="M31,112 q5,4 10,0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M23,105 C22,94 28,86 36,86 C44,86 50,94 49,105 C47,97 43,94 36,94 C29,94 25,97 23,105 Z" fill="var(--fig-a-hair)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="why">
+        <div class="stat"><b>Vaner</b><span>Man bliver ved med at gøre det, man plejer, selvom udstyret er der.</span></div>
+        <div class="stat"><b>Én introduktion</b><span>De fleste har kun fået vist hjælpemidlerne én gang, uden opfølgning.</span></div>
+        <div class="stat"><b>Tidspres</b><span>Man bliver opslugt af opgaverne og glemmer at variere sin stilling.</span></div>
+      </div>
+
+      <h2 style="margin-bottom:14px;">Vælg, hvad du vil blive klogere på</h2>
+      <div class="cards">
+        <a class="card c1" href="#stol-bord" data-route="stol-bord">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4v10M6 14a4 4 0 0 0 4 4h4M18 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Stol &amp; bord</h3>
+          <p>Indstil sædehøjde, sædedybde, ryglæn og hæve-sænke bordet rigtigt.</p>
+          <span class="go">Se guide →</span>
+        </a>
+        <a class="card c2" href="#hjaelpemidler" data-route="hjaelpemidler">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.8"/><circle cx="19.5" cy="15.5" r="3" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <h3>Hjælpemidler</h3>
+          <p>Mus, tastatur, skærm og stå-måtte – hvad de gør, og hvordan du bruger dem.</p>
+          <span class="go">Se guide →</span>
+        </a>
+        <a class="card c3" href="#ovelser" data-route="ovelser">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v6l4 4M12 14l-4 4M8 10l4 1 4-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Øvelser &amp; bevægelse</h3>
+          <p>Korte øvelser og en påmindelse om at rejse dig.</p>
+          <span class="go">Se guide →</span>
+        </a>
+      </div>
+
+      <footer class="credit">Udviklet som løsningsforslag af Studiegruppe 4, Ergoterapeutuddannelsen, VIA University College, i samarbejde med JBT Marel. Anbefalingerne om arbejdsstillinger tager afsæt i Arbejdstilsynets AT-vejledning om ergonomisk arbejdsmiljø. Guiden er generel og forebyggende og erstatter ikke en individuel ergonomisk vurdering.</footer>
+    </section>
+
+    <!-- STOL & BORD -->
+    <section class="view" id="view-stol-bord" hidden>
+      <div class="eyebrow">Trin 1</div>
+      <h1>Stol &amp; bord</h1>
+      <p class="lede">Rigtig indstilling tager et par minutter og aflaster nakke, skuldre og ryg gennem hele dagen.</p>
+
+      <div class="panel">
+        <h2>Sådan sidder du godt</h2>
+        <p class="expl">Sådan ser en god arbejdsstilling ud, når stol, bord og skærm er indstillet rigtigt.</p>
+        <div class="diagram">
+          <svg id="posture-svg" width="380" height="280" viewBox="0 0 380 280" role="img" aria-label="Illustration af korrekt siddestilling ved skrivebord">
+            <line x1="20" y1="256" x2="360" y2="256" stroke="var(--border)" stroke-width="2"/>
+            <g id="desk-group">
+              <rect width="70" height="14" rx="3" fill="var(--surface-2)" stroke="var(--border)" transform="translate(160,140)"/>
+              <line x1="168" y1="162" x2="168" y2="254" stroke="var(--border)" stroke-width="4" stroke-linecap="round"/>
+              <line x1="288" y1="162" x2="288" y2="254" stroke="var(--border)" stroke-width="4" stroke-linecap="round"/>
+              <rect x="198" y="96" width="70" height="48" rx="5" fill="var(--surface-2)" stroke="var(--border)"/>
+              <rect x="226" y="144" width="12" height="14" fill="var(--border)"/>
+              <rect x="206" y="142" width="50" height="8" rx="2" fill="var(--muted)" opacity=".5"/>
+              <line x1="98" y1="118" x2="236" y2="118" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 4"/>
+              <text x="132" y="109" font-family="Public Sans" font-size="11" font-weight="700" fill="#B97324">Øjenhøjde</text>
+            </g>
+            <g stroke="var(--border)" fill="var(--surface-2)">
+              <rect x="58" y="178" width="68" height="13" rx="4"/>
+              <path d="M63 178 C61 145,61 116,78 100" fill="none" stroke-width="10" stroke-linecap="round"/>
+              <line x1="65" y1="191" x2="65" y2="254" stroke-width="5" stroke-linecap="round"/>
+              <line x1="117" y1="191" x2="117" y2="254" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            <g>
+              <path d="M141 194 C135 213,130 231,134 246" fill="none" stroke="var(--fig-pants)" stroke-width="16" stroke-linecap="round"/>
+              <path d="M106 173 C118 184,130 190,141 194" fill="none" stroke="var(--fig-pants)" stroke-width="17" stroke-linecap="round"/>
+              <ellipse cx="136" cy="248" rx="14" ry="6" fill="var(--fig-shoe)"/>
+              <path d="M104 126 C124 132,138 141,146 150" fill="none" stroke="var(--fig-a-top)" stroke-width="16" stroke-linecap="round"/>
+              <path d="M146 150 C172 146,198 143,221 142" fill="none" stroke="var(--fig-a-top)" stroke-width="13" stroke-linecap="round"/>
+              <circle cx="222" cy="143" r="7" fill="var(--fig-a-skin)"/>
+              <path d="M83 120 C83 115,92 111,103 111 C114 111,123 115,123 120 L118 174 C112 178,93 178,88 174 Z" fill="var(--fig-a-top)"/>
+              <path d="M113 165 L118 174 L108 160 Z" fill="var(--fig-a-top-dk)" opacity=".5"/>
+              <path d="M97 114 L103 127 L109 114 Z" fill="var(--fig-shirt)"/>
+              <rect x="99" y="105" width="10" height="10" fill="var(--fig-a-skin)"/>
+              <circle cx="103" cy="93" r="16" fill="var(--fig-a-skin)"/>
+              <path d="M96 96 q4 3 8 0" stroke="var(--fig-mark)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+              <circle cx="97" cy="90" r="1.4" fill="#3A2A20"/>
+              <circle cx="109" cy="90" r="1.4" fill="#3A2A20"/>
+              <path d="M87 88 C86 73,95 62,104 62 C113 62,121 73,120 88 C117 77,112 73,104 73 C96 73,90 77,87 88 Z" fill="var(--fig-a-hair)"/>
+            </g>
+            <circle cx="141" cy="194" r="3.4" fill="var(--accent)"/>
+            <text x="146" y="188" font-family="Public Sans" font-size="11" font-weight="700" fill="#B97324">≈90°</text>
+            <circle cx="146" cy="150" r="3.4" fill="var(--accent)"/>
+            <text x="152" y="144" font-family="Public Sans" font-size="11" font-weight="700" fill="#B97324">≈90°</text>
+            <text x="12" y="272" font-family="Public Sans" font-size="11" fill="var(--muted)">Fødder fladt på gulvet</text>
+            <text x="242" y="272" font-family="Public Sans" font-size="11" fill="var(--muted)">Ryglænet støtter lænden</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="lbl">Trin for trin – visuelt</span>
+        <h2>Sådan indstiller du stolen</h2>
+        <p class="expl">Fem justeringer, du kun skal foretage én gang.</p>
+        <svg width="0" height="0" style="position:absolute">
+          <defs>
+            <g id="chairfig">
+              <rect x="16" y="98" width="46" height="10" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+              <path d="M20 98 C18 74,18 54,32 42" fill="none" stroke="var(--border)" stroke-width="7" stroke-linecap="round"/>
+              <line x1="22" y1="108" x2="22" y2="140" stroke="var(--border)" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="58" y1="108" x2="58" y2="140" stroke="var(--border)" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M76 112 C71 124,68 136,71 146" fill="none" stroke="var(--fig-pants)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M52 96 C60 103,68 107,76 112" fill="none" stroke="var(--fig-pants)" stroke-width="11" stroke-linecap="round"/>
+              <ellipse cx="72" cy="148" rx="8.5" ry="4" fill="var(--fig-shoe)"/>
+              <path d="M50 66 C63 70,72 76,77 83" fill="none" stroke="var(--fig-a-top)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M77 83 C90 81,101 79,110 78" fill="none" stroke="var(--fig-a-top)" stroke-width="8" stroke-linecap="round"/>
+              <circle cx="111" cy="78" r="4.4" fill="var(--fig-a-skin)"/>
+              <path d="M36 62 C36 58,43 55,52 55 C61 55,68 58,68 62 L64 100 C60 103,44 103,40 100 Z" fill="var(--fig-a-top)"/>
+              <path d="M60 92 L64 100 L56 86 Z" fill="var(--fig-a-top-dk)" opacity=".5"/>
+              <path d="M47 58 L52 68 L57 58 Z" fill="var(--fig-shirt)"/>
+              <circle cx="52" cy="40" r="13" fill="var(--fig-a-skin)"/>
+              <path d="M46 44 q6 4 11 0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <circle cx="48" cy="37" r="1.3" fill="#3A2A20"/>
+              <circle cx="57" cy="37" r="1.3" fill="#3A2A20"/>
+              <path d="M40 34 C39 24,45 16,52 16 C59 16,65 24,64 34 C62 27,58 24,52 24 C46 24,42 27,40 34 Z" fill="var(--fig-a-hair)"/>
+            </g>
+          </defs>
+        </svg>
+        <div class="story">
+          <figure>
+            <svg width="100%" height="150" viewBox="0 0 130 150"><use href="#chairfig"/><circle cx="72" cy="148" r="7" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M72 130 v14 M68 140 l4 4 4-4" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <figcaption><span class="step-n">1</span><br>Sædehøjde: fødder fladt på gulvet</figcaption>
+          </figure>
+          <figure>
+            <svg width="100%" height="150" viewBox="0 0 130 150"><use href="#chairfig"/><path d="M52 96 l-14 -6 M40 87 l-4 3 1 -5" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <figcaption><span class="step-n">2</span><br>Sædedybde: skub dig helt tilbage</figcaption>
+          </figure>
+          <figure>
+            <svg width="100%" height="150" viewBox="0 0 130 150"><use href="#chairfig"/><ellipse cx="22" cy="82" rx="7" ry="9" fill="none" stroke="var(--accent)" stroke-width="2.4"/></svg>
+            <figcaption><span class="step-n">3</span><br>Ryglæn: støtte i lænden</figcaption>
+          </figure>
+          <figure>
+            <svg width="100%" height="150" viewBox="0 0 130 150"><use href="#chairfig"/><path d="M20 98 C22 82 25 65 32 50" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-dasharray="3 3"/></svg>
+            <figcaption><span class="step-n">4</span><br>Hæld ryglænet let tilbage</figcaption>
+          </figure>
+          <figure>
+            <svg width="100%" height="150" viewBox="0 0 130 150"><use href="#chairfig"/><path d="M46 66 C46 72 48 76 50 66" fill="none" stroke="var(--accent)" stroke-width="2.4"/></svg>
+            <figcaption><span class="step-n">5</span><br>Armlæn: skuldrene hænger afslappet</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="lbl">Kilde: Arbejdstilsynet</span>
+        <h2>Plads til benene og arbejdsområde</h2>
+        <div class="compare">
+          <figure>
+            <svg width="200" height="150" viewBox="0 0 220 170" role="img" aria-label="Illustration af fri benplads under bordet">
+              <line x1="10" y1="150" x2="210" y2="150" stroke="var(--border)" stroke-width="2"/>
+              <rect x="40" y="60" width="140" height="10" rx="2" fill="var(--surface-2)" stroke="var(--border)"/>
+              <rect x="42" y="70" width="6" height="80" rx="2" fill="var(--border)"/>
+              <rect x="172" y="70" width="6" height="80" rx="2" fill="var(--border)"/>
+              <rect x="58" y="72" width="104" height="70" rx="4" fill="var(--accent)" fill-opacity="0.10" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 4"/>
+              <path d="M84 92 C102 90 118 93 130 104" stroke="var(--fig-pants)" stroke-width="14" stroke-linecap="round" fill="none"/>
+              <path d="M130 104 C128 118 127 133 129 146" stroke="var(--fig-pants)" stroke-width="13" stroke-linecap="round" fill="none"/>
+              <ellipse cx="129" cy="148" rx="9" ry="4" fill="var(--fig-shoe)"/>
+              <circle cx="80" cy="90" r="10" fill="var(--fig-a-top)"/>
+            </svg>
+            <figcaption>Benplads: frit rum til lår, knæ og fødder</figcaption>
+          </figure>
+          <figure>
+            <svg width="200" height="150" viewBox="0 0 220 170" role="img" aria-label="Illustration af normalt og maksimalt arbejdsområde for hænderne, set oppefra">
+              <rect x="10" y="15" width="200" height="35" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+              <path d="M 25.0 150.0 C 25.0 103.1 63.1 65.0 110.0 65.0 C 156.9 65.0 195.0 103.1 195.0 150.0 Z" fill="var(--primary)" fill-opacity="0.12" stroke="var(--primary)" stroke-width="1.6" stroke-dasharray="4 4"/>
+              <path d="M 52.0 150.0 C 52.0 118.0 78.0 92.0 110.0 92.0 C 142.0 92.0 168.0 118.0 168.0 150.0 Z" fill="var(--accent)" fill-opacity="0.25" stroke="var(--accent)" stroke-width="1.8"/>
+              <circle cx="110" cy="155" r="13" fill="var(--fig-a-skin)"/>
+              <rect x="98" y="88" width="18" height="10" rx="3" fill="var(--fig-a-top)"/>
+              <circle cx="152" cy="65" r="6" fill="var(--fig-a-top-dk)"/>
+              <text x="66" y="105" font-family="Public Sans" font-size="10" font-weight="700" fill="#B97324">Normalt</text>
+              <text x="160" y="55" font-family="Public Sans" font-size="10" font-weight="700" fill="var(--primary-dark)">Maks</text>
+            </svg>
+            <figcaption>Arbejdsområde: det du bruger ofte, skal være tæt på</figcaption>
+          </figure>
+        </div>
+        <p class="source-note">Kilde: Arbejdstilsynet, at.dk – "Arbejdshøjde, arbejdsområder og benplads".</p>
+      </div>
+
+      <div class="panel">
+        <span class="lbl">Kilde: Arbejdstilsynet</span>
+        <h2>Tjek din arbejdsstilling</h2>
+        <p class="expl">Arbejdstilsynet vurderer arbejdsstillinger i tre niveauer – grøn, gul og rød.</p>
+        <details class="at-details">
+          <summary>Vis skemaet for siddende arbejde</summary>
+          <div class="at-check">
+            <div class="at-row"><div class="part">Nakke</div><div class="at-pill good"><span class="dot"></span>Nakken er mest i midterstilling, med fri bevægelse.</div><div class="at-pill warn"><span class="dot"></span>Nakken er fastlåst i perioder.</div><div class="at-pill bad"><span class="dot"></span>Nakken er meget og langvarigt bøjet eller vredet.</div></div>
+            <div class="at-row"><div class="part">Ryg</div><div class="at-pill good"><span class="dot"></span>Ryggen har fri bevægelse, og ryglænet støtter godt.</div><div class="at-pill warn"><span class="dot"></span>Ryggen er bøjet eller vredet i perioder.</div><div class="at-pill bad"><span class="dot"></span>Ryggen er meget og langvarigt bøjet eller vredet, ofte uden støtte.</div></div>
+            <div class="at-row"><div class="part">Arme</div><div class="at-pill good"><span class="dot"></span>Arbejdshøjde og rækkeafstand passer til opgaven.</div><div class="at-pill warn"><span class="dot"></span>Armene er løftet i perioder.</div><div class="at-pill bad"><span class="dot"></span>Armene arbejder ofte i eller over skulderhøjde.</div></div>
+            <div class="at-row"><div class="part">Ben</div><div class="at-pill good"><span class="dot"></span>Der er fri benplads, og du bruger sjældent pedaler.</div><div class="at-pill warn"><span class="dot"></span>Benpladsen er til tider begrænset.</div><div class="at-pill bad"><span class="dot"></span>Benpladsen mangler, eller benene sidder langvarigt fastlåst.</div></div>
+          </div>
+          <p class="source-note">Kilde: Arbejdstilsynets AT-vejledning om ergonomisk arbejdsmiljø (VEJ nr. 10221 af 10/12/2025), skema for siddende arbejde, kap. 2.1.2, s. 11 – gengivet i forkortet og oversat form.</p>
+        </details>
+      </div>
+
+      <div class="panel checklist" data-checklist="stol-bord">
+        <h3>Tjekliste</h3>
+        <label><input type="checkbox" data-key="c1"><span>Sædehøjde og knæ er i orden</span></label>
+        <label><input type="checkbox" data-key="c2"><span>Sædedybden passer (en knytnæve til knæhasen)</span></label>
+        <label><input type="checkbox" data-key="c3"><span>Ryglænet støtter lænden</span></label>
+        <label><input type="checkbox" data-key="c4"><span>Albuer i ca. 90° ved tastaturet</span></label>
+        <label><input type="checkbox" data-key="c5"><span>Skærmen er i øjenhøjde</span></label>
+        <label><input type="checkbox" data-key="c6"><span>Jeg skifter mellem siddende og stående hver 30-60 minut</span></label>
+        <p class="save-note">Tjeklisten gemmes kun i denne browser, på denne computer.</p>
+      </div>
+    </section>
+
+    <!-- HJÆLPEMIDLER -->
+    <section class="view" id="view-hjaelpemidler" hidden>
+      <div class="eyebrow">Trin 2</div>
+      <h1>Hjælpemidler</h1>
+      <p class="lede">Hjælpemidler er redskaber, der er lavet til at aflaste kroppen, når du sidder eller står ved computeren i mange timer.</p>
+
+      <div class="aid-carousel-wrap">
+        <button class="carousel-btn prev" type="button" aria-label="Forrige hjælpemiddel" data-dir="-1">‹</button>
+        <div class="aid-carousel" id="aid-carousel">
+          <div class="aid-card">
+            <div class="subhead"><span class="num">1</span><h2>Mus</h2></div>
+            <div class="compare">
+              <figure class="bad">
+                <svg width="170" height="130" viewBox="0 0 200 150" role="img" aria-label="Forkert: musen langt fra kroppen">
+                  <rect x="10" y="120" width="180" height="10" rx="3" fill="var(--border)"/>
+                  <path d="M58 120 C58 104,62 94,72 90" stroke="var(--fig-pants)" stroke-width="14" fill="none" stroke-linecap="round"/>
+                  <circle cx="70" cy="78" r="11" fill="var(--fig-b-skin)"/>
+                  <path d="M 58.5 74.5 C 56.5 68.7 64.5 64.2 70 64.2 C 75.5 64.2 83.5 68.7 81.5 74.5 L 81.5 94.5 C 81.5 96.2 77.5 95.6 75.5 91.8 L 75.5 74.5 L 64.5 74.5 L 64.5 91.8 C 62.5 95.6 58.5 96.2 58.5 94.5 Z" fill="var(--fig-b-hair)"/>
+                  <rect x="80" y="82" width="46" height="10" rx="2" fill="var(--muted)" opacity=".5"/>
+                  <path d="M72 90 C90 86,142 84,168 96" stroke="var(--fig-b-top)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                  <ellipse cx="176" cy="102" rx="10" ry="14" fill="var(--fig-b-skin)"/>
+                  <ellipse cx="176" cy="102" rx="13" ry="17" fill="none" stroke="var(--bad)" stroke-width="2.4"/>
+                  <path d="M169 90 l14 14 M183 90 l-14 14" stroke="var(--bad)" stroke-width="2.4" stroke-linecap="round"/>
+                </svg>
+                <figcaption>Langt fra kroppen</figcaption>
+              </figure>
+              <figure class="good">
+                <svg width="170" height="130" viewBox="0 0 200 150" role="img" aria-label="Rigtigt: musen tæt på kroppen">
+                  <rect x="10" y="120" width="180" height="10" rx="3" fill="var(--border)"/>
+                  <path d="M58 120 C58 104,62 94,72 90" stroke="var(--fig-pants)" stroke-width="14" fill="none" stroke-linecap="round"/>
+                  <circle cx="70" cy="78" r="11" fill="var(--fig-b-skin)"/>
+                  <path d="M 58.5 74.5 C 56.5 68.7 64.5 64.2 70 64.2 C 75.5 64.2 83.5 68.7 81.5 74.5 L 81.5 94.5 C 81.5 96.2 77.5 95.6 75.5 91.8 L 75.5 74.5 L 64.5 74.5 L 64.5 91.8 C 62.5 95.6 58.5 96.2 58.5 94.5 Z" fill="var(--fig-b-hair)"/>
+                  <rect x="80" y="82" width="46" height="10" rx="2" fill="var(--muted)" opacity=".5"/>
+                  <path d="M72 90 C82 88,90 90,94 94" stroke="var(--fig-b-top)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                  <ellipse cx="98" cy="98" rx="9" ry="13" fill="var(--fig-b-skin)"/>
+                  <ellipse cx="98" cy="98" rx="12" ry="16" fill="none" stroke="var(--accent-2)" stroke-width="2.4"/>
+                  <path d="M92 92 l3 12 M104 92 l3 12" stroke="var(--accent-2)" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+                <figcaption>Tæt på kroppen</figcaption>
+              </figure>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> Almindelig eller ergonomisk mus, placeret foran kroppen.</p>
+              <p><b>Hvorfor:</b> Langt fra kroppen belaster skulder og nakke hele dagen.</p>
+              <p><b>Sådan gør du:</b> Placér musen tæt på kroppen, i forlængelse af skulderen.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">2</span><h2>Tastatur</h2></div>
+            <div class="diagram">
+              <svg width="200" height="150" viewBox="0 0 200 150" role="img" aria-label="Illustration af hænder på tastatur med lige håndled">
+                <rect x="10" y="112" width="180" height="7" rx="2" fill="var(--border)"/>
+                <path d="M78 78 C78 62,87 56,100 56 C113 56,122 62,122 78 L122 112 L78 112 Z" fill="var(--fig-a-top)"/>
+                <path d="M112 100 L122 112 L112 90 Z" fill="var(--fig-a-top-dk)" opacity=".4"/>
+                <rect x="58" y="90" width="84" height="16" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+                <path d="M82 66 C76 76,76 86,86 93" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <path d="M118 66 C124 76,124 86,114 93" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <ellipse cx="87" cy="95" rx="7" ry="5" fill="var(--fig-a-skin)"/>
+                <ellipse cx="113" cy="95" rx="7" ry="5" fill="var(--fig-a-skin)"/>
+                <rect x="95" y="48" width="10" height="8" fill="var(--fig-a-skin)"/>
+                <circle cx="100" cy="38" r="14" fill="var(--fig-a-skin)"/>
+                <circle cx="95" cy="36" r="1.3" fill="#3A2A20"/>
+                <circle cx="105" cy="36" r="1.3" fill="#3A2A20"/>
+                <path d="M94 43 q6 4 12 0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M86 34 C84 22,91 14,100 14 C109 14,116 22,114 34 C112 26,107 23,100 23 C93 23,88 26,86 34 Z" fill="var(--fig-a-hair)"/>
+                <path d="M128 76 L128 96" stroke="var(--accent-2)" stroke-width="2" stroke-dasharray="2 3"/>
+                <text x="132" y="88" font-family="Public Sans" font-size="10.5" font-weight="700" fill="var(--accent-2)">lige håndled</text>
+              </svg>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> Almindeligt eller delt tastatur, centreret foran dig.</p>
+              <p><b>Hvorfor:</b> Skævt tastatur bøjer håndleddene – over tid belaster det sener og led.</p>
+              <p><b>Sådan gør du:</b> Centrér tastaturet. Lad håndleddene hvile fladt og lige.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">3</span><h2>Skærm</h2></div>
+            <div class="txt" style="min-height:150px;display:flex;flex-direction:column;justify-content:center;">
+              <p><b>Hvad:</b> Din computerskærm, placeret rigtigt – se detaljerne under <a href="#stol-bord" data-route="stol-bord">Stol &amp; bord</a>.</p>
+              <p><b>Hvorfor:</b> Forkert placeret skærm bøjer eller drejer nakken hele dagen.</p>
+              <p><b>Sådan gør du:</b> Overkant i øjenhøjde, en armslængde væk.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">4</span><h2>To skærme</h2></div>
+            <div class="compare">
+              <figure class="bad">
+                <svg width="170" height="130" viewBox="0 0 200 150" role="img" aria-label="Forkert: primær skærm sidder skævt til siden">
+                  <line x1="10" y1="140" x2="190" y2="140" stroke="var(--border)" stroke-width="2"/>
+                  <rect x="18" y="68" width="72" height="46" rx="3" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="140" y="80" width="48" height="34" rx="3" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+                  <circle cx="100" cy="128" r="12" fill="var(--fig-a-skin)"/>
+                  <path d="M100 116 L54 92" stroke="var(--bad)" stroke-width="2.4" stroke-linecap="round"/>
+                  <path d="M94 106 l-4 -14 M84 111 l-10 -10" stroke="var(--bad)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <figcaption>Skærmen skubbet ud til siden</figcaption>
+              </figure>
+              <figure class="good">
+                <svg width="170" height="130" viewBox="0 0 200 150" role="img" aria-label="Rigtigt: begge skærme centreret foran personen">
+                  <line x1="10" y1="140" x2="190" y2="140" stroke="var(--border)" stroke-width="2"/>
+                  <rect x="30" y="68" width="65" height="45" rx="3" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="105" y="68" width="65" height="45" rx="3" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+                  <circle cx="100" cy="128" r="12" fill="var(--fig-a-skin)"/>
+                  <path d="M100 116 L100 92" stroke="var(--accent-2)" stroke-width="2.4" stroke-linecap="round"/>
+                </svg>
+                <figcaption>Skærmene centreret, samme afstand fra midten</figcaption>
+              </figure>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> To skærme, sat op så den du kigger mest på, sidder lige foran dig.</p>
+              <p><b>Hvorfor:</b> Én skærm skubbet ud til siden gør, at nakken vrides skævt hele dagen.</p>
+              <p><b>Sådan gør du:</b> Placér din primære skærm centreret foran dig, eller sæt begge skærme symmetrisk med samme afstand fra midten.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">5</span><h2>Stå-måtte</h2></div>
+            <div class="diagram">
+              <svg width="170" height="180" viewBox="0 0 170 190" role="img" aria-label="Illustration af person, der står på en ergonomisk måtte ved et hævet bord">
+                <rect x="10" y="150" width="150" height="8" rx="3" fill="var(--border)"/>
+                <rect x="95" y="30" width="8" height="120" rx="3" fill="var(--border)"/>
+                <rect x="85" y="20" width="60" height="12" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+                <ellipse cx="65" cy="152" rx="34" ry="9" fill="var(--accent)" opacity=".35"/>
+                <ellipse cx="65" cy="150" rx="30" ry="7" fill="var(--accent)" opacity=".55"/>
+                <path d="M55 140 C53 128,52 118,54 108" stroke="var(--fig-pants)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M73 140 C75 128,76 118,74 108" stroke="var(--fig-pants)" stroke-width="10" stroke-linecap="round"/>
+                <ellipse cx="55" cy="144" rx="8" ry="4" fill="var(--fig-shoe)"/>
+                <ellipse cx="73" cy="144" rx="8" ry="4" fill="var(--fig-shoe)"/>
+                <path d="M48 108 C48 100,50 94,54 90 C46 88,42 84,42 78 C42 68,52 60,64 60 C76 60,86 68,86 78 C86 84,82 88,74 90 C78 94,80 100,80 108 Z" fill="var(--fig-b-top)"/>
+                <path d="M74 100 L80 108 L72 92 Z" fill="var(--fig-b-top-dk)" opacity=".5"/>
+                <path d="M58 82 C60 88,62 92,64 92 C66 92,68 88,70 82" fill="var(--fig-shirt)"/>
+                <circle cx="64" cy="60" r="14" fill="var(--fig-b-skin)"/>
+                <circle cx="59" cy="58" r="1.3" fill="#3A2A20"/>
+                <circle cx="69" cy="58" r="1.3" fill="#3A2A20"/>
+                <path d="M60 65 q4 3 8 0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M 49.3 55.5 C 47.3 48.1 57 42.5 64 42.5 C 71 42.5 80.7 48.1 78.7 55.5 L 78.7 81 C 78.7 83.1 73 82.4 71 77.5 L 71 55.5 L 57 55.5 L 57 77.5 C 55 82.4 49.3 83.1 49.3 81 Z" fill="var(--fig-b-hair)"/>
+              </svg>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> Blød, fjedrende måtte til hævet bord.</p>
+              <p><b>Hvorfor:</b> Hårdt gulv gør ondt i fødder og lænd – det er ofte grunden til, bordet kun bruges siddende.</p>
+              <p><b>Sådan gør du:</b> Stil dig i skulderbredde, skift jævnligt vægt mellem fødderne.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">6</span><h2>Fodstøtte</h2></div>
+            <div class="diagram">
+              <svg width="200" height="150" viewBox="0 0 200 150" role="img" aria-label="Illustration af person med fødderne på en skrå fodstøtte">
+                <rect x="10" y="140" width="180" height="6" rx="2" fill="var(--border)"/>
+                <path d="M55 140 L150 140 L150 122 L55 133 Z" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+                <path d="M90 92 C88 100,86 108,82 118" stroke="var(--fig-pants)" stroke-width="13" stroke-linecap="round" fill="none"/>
+                <path d="M104 92 C107 100,110 108,115 116" stroke="var(--fig-pants)" stroke-width="13" stroke-linecap="round" fill="none"/>
+                <ellipse cx="80" cy="123" rx="9" ry="4.5" fill="var(--fig-shoe)" transform="rotate(-10 80 123)"/>
+                <ellipse cx="117" cy="120" rx="9" ry="4.5" fill="var(--fig-shoe)" transform="rotate(10 117 120)"/>
+                <path d="M78 92 C78 76,87 70,100 70 C113 70,122 76,122 92 L122 96 C110 92,90 92,78 96 Z" fill="var(--fig-a-top)"/>
+                <circle cx="100" cy="52" r="14" fill="var(--fig-a-skin)"/>
+                <circle cx="95" cy="50" r="1.3" fill="#3A2A20"/>
+                <circle cx="105" cy="50" r="1.3" fill="#3A2A20"/>
+                <path d="M94 57 q6 4 12 0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M86 48 C84 36,91 28,100 28 C109 28,116 36,114 48 C112 40,107 37,100 37 C93 37,88 40,86 48 Z" fill="var(--fig-a-hair)"/>
+              </svg>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> Et skråt underlag til fødderne, hvis de ikke når gulvet, selv med sædet korrekt indstillet.</p>
+              <p><b>Hvorfor:</b> Hængende ben, eller en for lav stol, belaster lår og lænd.</p>
+              <p><b>Sådan gør du:</b> Brug en fodstøtte, hvis fødderne ikke hviler fladt, når sædehøjden er rigtig.</p>
+            </div>
+          </div>
+
+          <div class="aid-card">
+            <div class="subhead"><span class="num">7</span><h2>Håndledsstøtte</h2></div>
+            <div class="diagram">
+              <svg width="200" height="150" viewBox="0 0 200 150" role="img" aria-label="Illustration af håndledsstøtte foran tastaturet">
+                <rect x="10" y="118" width="180" height="7" rx="2" fill="var(--border)"/>
+                <path d="M78 78 C78 62,87 56,100 56 C113 56,122 62,122 78 L122 100 L78 100 Z" fill="var(--fig-a-top)"/>
+                <rect x="58" y="86" width="84" height="14" rx="3" fill="var(--surface-2)" stroke="var(--border)"/>
+                <rect x="54" y="98" width="92" height="11" rx="5.5" fill="var(--accent)" fill-opacity=".85"/>
+                <path d="M82 66 C76 76,76 84,86 90" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <path d="M118 66 C124 76,124 84,114 90" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <ellipse cx="87" cy="97" rx="7" ry="5" fill="var(--fig-a-skin)"/>
+                <ellipse cx="113" cy="97" rx="7" ry="5" fill="var(--fig-a-skin)"/>
+                <rect x="95" y="48" width="10" height="8" fill="var(--fig-a-skin)"/>
+                <circle cx="100" cy="38" r="14" fill="var(--fig-a-skin)"/>
+                <circle cx="95" cy="36" r="1.3" fill="#3A2A20"/>
+                <circle cx="105" cy="36" r="1.3" fill="#3A2A20"/>
+                <path d="M94 43 q6 4 12 0" stroke="var(--fig-mark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M86 34 C84 22,91 14,100 14 C109 14,116 22,114 34 C112 26,107 23,100 23 C93 23,88 26,86 34 Z" fill="var(--fig-a-hair)"/>
+              </svg>
+            </div>
+            <div class="txt">
+              <p><b>Hvad:</b> Blød pude foran tastatur eller mus, som håndleddet kan hvile på.</p>
+              <p><b>Hvorfor:</b> Uden støtte presses håndleddet ofte mod bordkanten.</p>
+              <p><b>Sådan gør du:</b> Brug den som hvilepunkt mellem tastetryk, ikke som noget du læner på hele tiden.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn next" type="button" aria-label="Næste hjælpemiddel" data-dir="1">›</button>
+      </div>
+      <p class="carousel-hint">Scroll eller brug pilene for at se alle hjælpemidler →</p>
+
+      <div class="panel checklist" data-checklist="hjaelpemidler">
+        <h3>Tjekliste</h3>
+        <label><input type="checkbox" data-key="h1"><span>Musen står tæt på kroppen</span></label>
+        <label><input type="checkbox" data-key="h2"><span>Tastaturet er centreret, håndleddene ligger lige</span></label>
+        <label><input type="checkbox" data-key="h3"><span>Skærmen er i øjenhøjde</span></label>
+        <label><input type="checkbox" data-key="h4"><span>Jeg bruger stå-måtten, når bordet er hævet</span></label>
+        <label><input type="checkbox" data-key="h5"><span>Fødderne hviler fladt, evt. med fodstøtte</span></label>
+        <label><input type="checkbox" data-key="h6"><span>Jeg ved, hvilke hjælpemidler jeg har adgang til</span></label>
+        <label><input type="checkbox" data-key="h7"><span>Ved to skærme: den primære er centreret foran mig</span></label>
+        <p class="save-note">Tjeklisten gemmes kun i denne browser, på denne computer.</p>
+      </div>
+    </section>
+
+    <!-- ØVELSER -->
+    <section class="view" id="view-ovelser" hidden>
+      <div class="eyebrow">Trin 3</div>
+      <h1>Øvelser &amp; bevægelse</h1>
+      <p class="lede">Det vigtigste er ikke den perfekte indstilling – det er at variere din stilling i løbet af dagen.</p>
+
+      <div class="panel">
+        <h2>Seks korte øvelser</h2>
+        <p class="expl">Du behøver ikke lave dem alle. Vælg 2-3, og gentag dem et par gange i løbet af dagen.</p>
+        <div class="ex-grid">
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <path d="M50 165 C48 145,46 128,50 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M90 165 C92 145,94 128,90 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M46 116 C46 92,54 74,70 74 C86 74,94 92,94 116 Z" fill="var(--fig-a-top)"/>
+              <path d="M84 100 L94 116 L80 88 Z" fill="var(--fig-a-top-dk)" opacity=".45"/>
+              <g class="anim-neck">
+                <rect x="63" y="52" width="14" height="14" fill="var(--fig-a-skin)"/>
+                <circle cx="70" cy="34" r="18" fill="var(--fig-a-skin)"/>
+                <circle cx="64" cy="31" r="1.6" fill="#3A2A20"/>
+                <circle cx="76" cy="31" r="1.6" fill="#3A2A20"/>
+                <path d="M63 40 q7 5 14 0" stroke="var(--fig-mark)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                <path d="M52 32 C50 16,59 6,70 6 C81 6,90 16,88 32 C85 21,79 17,70 17 C61 17,55 21,52 32 Z" fill="var(--fig-a-hair)"/>
+              </g>
+            </svg>
+            <h3>Nakke-stræk</h3>
+            <p>Vip hovedet mod skulderen, 10 sek. hver side</p>
+            <p class="why">Løsner spændinger i nakken</p>
+          </div>
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <path d="M50 165 C48 145,46 128,50 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M90 165 C92 145,94 128,90 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M45 116 C43 96,48 78,58 74 C50 72,46 66,48 60 C51 52,62 48,72 51 C84 54,90 64,88 74 C97 79,100 96,98 116 Z" fill="var(--fig-b-top)"/>
+              <path d="M88 100 L98 116 L84 88 Z" fill="var(--fig-b-top-dk)" opacity=".4"/>
+              <rect x="63" y="52" width="14" height="14" fill="var(--fig-b-skin)"/>
+              <circle cx="70" cy="34" r="18" fill="var(--fig-b-skin)"/>
+              <circle cx="64" cy="31" r="1.6" fill="#3A2A20"/>
+              <circle cx="76" cy="31" r="1.6" fill="#3A2A20"/>
+              <path d="M63 40 q7 5 14 0" stroke="var(--fig-mark)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M 51.1 28.2 C 49.1 18.7 61 11.5 70 11.5 C 79 11.5 90.9 18.7 88.9 28.2 L 88.9 61 C 88.9 63.7 81 62.8 79 56.5 L 79 28.2 L 61 28.2 L 61 56.5 C 59 62.8 51.1 63.7 51.1 61 Z" fill="var(--fig-b-hair)"/>
+              <g class="anim-shoulder">
+                <path d="M86 82 C98 84,106 92,108 102" stroke="var(--fig-b-top)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                <circle cx="109" cy="103" r="5.5" fill="var(--fig-b-skin)"/>
+              </g>
+            </svg>
+            <h3>Skulderrul</h3>
+            <p>Rul skuldrene bagud, 8 gentagelser</p>
+            <p class="why">Afspænder skuldre, der trækkes op</p>
+          </div>
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <path d="M50 165 C48 145,46 128,50 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M90 165 C92 145,94 128,90 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M46 116 C46 92,54 74,70 74 C86 74,94 92,94 116 Z" fill="var(--fig-a-top)"/>
+              <path d="M84 100 L94 116 L80 88 Z" fill="var(--fig-a-top-dk)" opacity=".45"/>
+              <circle cx="70" cy="34" r="18" fill="var(--fig-a-skin)"/>
+              <circle cx="64" cy="31" r="1.6" fill="#3A2A20"/>
+              <circle cx="76" cy="31" r="1.6" fill="#3A2A20"/>
+              <path d="M63 40 q7 5 14 0" stroke="var(--fig-mark)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M52 32 C50 16,59 6,70 6 C81 6,90 16,88 32 C85 21,79 17,70 17 C61 17,55 21,52 32 Z" fill="var(--fig-a-hair)"/>
+              <path d="M86 84 C100 82,110 84,116 90" stroke="var(--fig-a-top)" stroke-width="12" fill="none" stroke-linecap="round"/>
+              <g class="anim-wrist">
+                <path d="M114 88 C122 86,128 88,132 92" stroke="var(--fig-a-skin)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                <circle cx="134" cy="93" r="6" fill="var(--fig-a-skin)"/>
+              </g>
+            </svg>
+            <h3>Håndledsstræk</h3>
+            <p>Stræk hånden opad og nedad, 5 gange</p>
+            <p class="why">Forebygger ømhed fra tastatur og mus</p>
+          </div>
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <circle cx="70" cy="30" r="17" fill="var(--fig-b-skin)"/>
+              <circle cx="64" cy="27" r="1.5" fill="#3A2A20"/>
+              <circle cx="76" cy="27" r="1.5" fill="#3A2A20"/>
+              <path d="M63 36 q7 5 14 0" stroke="var(--fig-mark)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M45 108 C43 88,48 70,58 66 C50 64,46 58,48 52 C51 44,62 40,72 43 C84 46,90 56,88 66 C97 71,100 88,98 108 Z" fill="var(--fig-b-top)"/>
+              <path d="M88 92 L98 108 L84 80 Z" fill="var(--fig-b-top-dk)" opacity=".4"/>
+              <path d="M 52.1 24.6 C 50.1 15.6 61.5 8.8 70 8.8 C 78.5 8.8 89.8 15.6 87.8 24.6 L 87.8 55.5 C 87.8 58 80.5 57.2 78.5 51.2 L 78.5 24.6 L 61.5 24.6 L 61.5 51.2 C 59.5 57.2 52.1 58 52.1 55.5 Z" fill="var(--fig-b-hair)"/>
+              <g class="anim-walk-a"><path d="M60 108 C54 124,48 136,53 152" stroke="var(--fig-pants)" stroke-width="13" stroke-linecap="round" fill="none"/><ellipse cx="53" cy="155" rx="9" ry="4.5" fill="var(--fig-shoe)"/></g>
+              <g class="anim-walk-b"><path d="M80 108 C86 124,92 136,87 152" stroke="var(--fig-pants)" stroke-width="13" stroke-linecap="round" fill="none"/><ellipse cx="87" cy="155" rx="9" ry="4.5" fill="var(--fig-shoe)"/></g>
+            </svg>
+            <h3>Rejs dig</h3>
+            <p>Gå en kort tur, fx efter kaffen</p>
+            <p class="why">Bryder stillesiddende tid</p>
+          </div>
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <path d="M50 165 C48 145,46 128,50 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M90 165 C92 145,94 128,90 112" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M46 116 C46 92,54 74,70 74 C86 74,94 92,94 116 Z" fill="var(--fig-a-top)"/>
+              <path d="M84 100 L94 116 L80 88 Z" fill="var(--fig-a-top-dk)" opacity=".45"/>
+              <circle cx="70" cy="34" r="18" fill="var(--fig-a-skin)"/>
+              <circle cx="64" cy="31" r="1.6" fill="#3A2A20"/>
+              <circle cx="76" cy="31" r="1.6" fill="#3A2A20"/>
+              <path d="M63 40 q7 5 14 0" stroke="var(--fig-mark)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M52 32 C50 16,59 6,70 6 C81 6,90 16,88 32 C85 21,79 17,70 17 C61 17,55 21,52 32 Z" fill="var(--fig-a-hair)"/>
+              <g class="anim-squeeze2">
+                <path d="M52 88 C44 80,38 70,38 58" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <circle cx="37" cy="52" r="6.5" fill="var(--fig-a-skin)"/>
+                <path d="M88 88 C96 80,102 70,102 58" stroke="var(--fig-a-top)" stroke-width="11" fill="none" stroke-linecap="round"/>
+                <circle cx="103" cy="52" r="6.5" fill="var(--fig-a-skin)"/>
+              </g>
+            </svg>
+            <h3>Skulderblade sammen</h3>
+            <p>Træk skulderbladene sammen bagtil, hold 5 sek., 8 gentagelser</p>
+            <p class="why">Modvirker rundet ryg og fremskudt hoved</p>
+          </div>
+          <div class="ex-card">
+            <svg width="84" height="98" viewBox="0 0 120 165" aria-hidden="true">
+              <path d="M52 165 C50 148,48 132,52 116" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <path d="M88 165 C90 148,92 132,88 116" stroke="var(--fig-pants)" stroke-width="15" stroke-linecap="round" fill="none"/>
+              <g class="anim-sidebend">
+                <path d="M52 118 C48 100,50 82,62 68 C76 70,88 84,90 106 C90 112,86 116,80 118 Z" fill="var(--fig-b-top)"/>
+                <path d="M78 100 L90 112 L76 90 Z" fill="var(--fig-b-top-dk)" opacity=".4"/>
+                <path d="M58 100 C50 96,44 90,42 82" stroke="var(--fig-b-top)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                <circle cx="40" cy="78" r="6" fill="var(--fig-b-skin)"/>
+                <path d="M78 78 C84 64,88 50,86 38" stroke="var(--fig-b-top)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                <circle cx="85" cy="34" r="6" fill="var(--fig-b-skin)"/>
+                <circle cx="65" cy="56" r="15" fill="var(--fig-b-skin)"/>
+                <circle cx="60" cy="53" r="1.4" fill="#3A2A20"/>
+                <circle cx="70" cy="54" r="1.4" fill="#3A2A20"/>
+                <path d="M59 60 q6 4 12 1" stroke="var(--fig-mark)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                <path d="M 48.7 51.5 C 46.7 44.1 56 39 63 39 C 70 39 79.3 44.1 77.3 51.5 L 77.3 76 C 77.3 78.1 72 77.4 70 72.5 L 70 51.5 L 56 51.5 L 56 72.5 C 54 77.4 48.7 78.1 48.7 76 Z" fill="var(--fig-b-hair)"/>
+              </g>
+            </svg>
+            <h3>Sidebøjning</h3>
+            <p>Bøj overkroppen til siden, arm strakt op, 10 sek. hver side</p>
+            <p class="why">Holder ryggen bevægelig til siderne</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Påmindelse om at rejse dig</h2>
+        <p style="margin-bottom:2px;font-size:14.5px;">Sæt en påmindelse, mens du arbejder i denne fane. Praktisk, når man bliver opslugt af en opgave.</p>
+        <div class="reminder">
+          <label class="visually-hidden" for="interval">Vælg interval</label>
+          <select id="interval">
+            <option value="20">Hvert 20. minut</option>
+            <option value="30" selected>Hvert 30. minut</option>
+            <option value="45">Hvert 45. minut</option>
+            <option value="60">Hver time</option>
+          </select>
+          <button id="reminder-toggle">Start påmindelse</button>
+          <span class="countdown" id="reminder-countdown" hidden>30:00</span>
+          <span class="status" id="reminder-status">Ingen påmindelse er sat.</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="lbl">Har du allerede ondt?</span>
+        <p style="margin:0;font-size:14.5px;">Denne guide er generel og forebyggende – den erstatter ikke en individuel vurdering. Har du smerter, en skade, er gravid, eller kan udstyret ikke indstilles til din krop, så kontakt din nærmeste leder eller arbejdsmiljørepræsentant.</p>
+      </div>
+    </section>
+
+    <footer class="credit" id="global-credit" hidden>Udviklet som løsningsforslag af Studiegruppe 4, Ergoterapeutuddannelsen, VIA University College, i samarbejde med JBT Marel.</footer>
+  </main>
+  <div class="banner" id="reminder-banner" role="status" aria-live="polite">
+    <span>⏱</span><span>Tid til at rejse dig og bevæge dig lidt.</span>
+  </div>
+</div>
+
+<style>
+  .anim-neck{ transform-box: fill-box; transform-origin: 50% 100%; animation: neckTilt 3.6s ease-in-out infinite; }
+  @keyframes neckTilt{ 0%,100%{ transform: rotate(0deg);} 25%{ transform: rotate(-12deg);} 60%{ transform: rotate(10deg);} 80%{ transform: rotate(0deg);} }
+  .anim-shoulder{ transform-box: fill-box; transform-origin: 0% 0%; animation: shoulderRoll 2.4s ease-in-out infinite; }
+  @keyframes shoulderRoll{ 0%{ transform: translate(0,0) rotate(0deg);} 25%{ transform: translate(2px,-4px) rotate(-6deg);} 50%{ transform: translate(0,-7px) rotate(-10deg);} 75%{ transform: translate(-2px,-4px) rotate(-6deg);} 100%{ transform: translate(0,0) rotate(0deg);} }
+  .anim-wrist{ transform-box: fill-box; transform-origin: 0% 50%; animation: wristFlex 2.2s ease-in-out infinite; }
+  @keyframes wristFlex{ 0%,100%{ transform: rotate(0deg);} 50%{ transform: rotate(-24deg);} }
+  .anim-walk-a{ transform-box: fill-box; transform-origin: 50% 0%; animation: walkA 1.1s ease-in-out infinite; }
+  .anim-walk-b{ transform-box: fill-box; transform-origin: 50% 0%; animation: walkB 1.1s ease-in-out infinite; }
+  @keyframes walkA{ 0%,100%{ transform: rotate(14deg);} 50%{ transform: rotate(-14deg);} }
+  @keyframes walkB{ 0%,100%{ transform: rotate(-14deg);} 50%{ transform: rotate(14deg);} }
+  #desk-group{ animation: deskLift 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  @keyframes deskLift{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+  .anim-squeeze2{ transform-box: fill-box; transform-origin: 50% 50%; animation: squeeze2 2.6s ease-in-out infinite; }
+  @keyframes squeeze2{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(4px);} }
+  .anim-sidebend{ transform-box: fill-box; transform-origin: 50% 100%; animation: sidebend 3.2s ease-in-out infinite; }
+  @keyframes sidebend{ 0%,100%{ transform: rotate(0deg);} 50%{ transform: rotate(-4deg);} }
+</style>
+
+<script>
+(function(){
+  var routes = ["forside","stol-bord","hjaelpemidler","ovelser"];
+  function show(route){
+    if (routes.indexOf(route) === -1) route = "forside";
+    routes.forEach(function(r){
+      var el = document.getElementById("view-"+r);
+      if (el) el.hidden = (r !== route);
+    });
+    document.querySelectorAll("[data-route]").forEach(function(a){
+      a.classList.toggle("active", a.getAttribute("data-route") === route);
+    });
+    var credit = document.getElementById("global-credit");
+    if (credit) credit.hidden = true;
+    window.scrollTo(0,0);
+  }
+  function routeFromHash(){
+    return (location.hash || "#forside").replace("#","");
+  }
+  window.addEventListener("hashchange", function(){ show(routeFromHash()); });
+  show(routeFromHash());
+
+  document.querySelectorAll(".checklist").forEach(function(box){
+    var group = box.getAttribute("data-checklist");
+    var storeKey = "ergonomiguide:" + group;
+    var saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(storeKey) || "{}"); }catch(e){ saved = {}; }
+    box.querySelectorAll("input[type=checkbox]").forEach(function(cb){
+      var key = cb.getAttribute("data-key");
+      if (saved[key]) cb.checked = true;
+      cb.addEventListener("change", function(){
+        saved[key] = cb.checked;
+        try{ localStorage.setItem(storeKey, JSON.stringify(saved)); }catch(e){}
+      });
+    });
+  });
+
+  var toggleBtn = document.getElementById("reminder-toggle");
+  var statusEl = document.getElementById("reminder-status");
+  var countdownEl = document.getElementById("reminder-countdown");
+  var intervalSel = document.getElementById("interval");
+  var banner = document.getElementById("reminder-banner");
+  var tickHandle = null, running = false, targetTime = null;
+  var audioCtx = null;
+
+  function formatMMSS(ms){
+    var totalSec = Math.max(0, Math.round(ms / 1000));
+    var m = Math.floor(totalSec / 60);
+    var s = totalSec % 60;
+    return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function updateCountdown(){
+    if (!countdownEl) return;
+    if (!running || targetTime === null){
+      countdownEl.hidden = true;
+      return;
+    }
+    countdownEl.hidden = false;
+    countdownEl.textContent = "Næste om " + formatMMSS(targetTime - Date.now());
+  }
+
+  // Lydsignal ved påmindelse, en række bip der samlet varer ca. 5 sekunder,
+  // lavet i browseren uden ekstern lydfil.
+  function beep(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      var now = audioCtx.currentTime;
+      var totalDuration = 5;   // samlet varighed i sekunder
+      var toneDuration = 0.35; // hvert bips varighed
+      var gap = 0.5;           // afstand mellem hvert bips start
+      var count = Math.round(totalDuration / gap);
+      for (var i = 0; i < count; i++){
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = 880;
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        var start = now + i * gap;
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.35, start + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + toneDuration);
+        osc.start(start);
+        osc.stop(start + toneDuration + 0.02);
+      }
+    }catch(e){ /* lyd er "nice to have", må ikke stoppe påmindelsen hvis den fejler */ }
+  }
+
+  function armNextTarget(){
+    var minutes = parseInt(intervalSel.value, 10) || 20;
+    targetTime = Date.now() + minutes * 60 * 1000;
+  }
+
+  function trigger(){
+    banner.classList.add("show");
+    beep();
+    if (statusEl) statusEl.textContent = "Tid til en pause! Ny påmindelse om " + intervalSel.value + " minutter.";
+  }
+
+  // Tjekker det faktiske klokkeslæt hvert sekund i stedet for at stole på én lang
+  // setTimeout. Det gør påmindelsen robust over for, at browsere sætter timere ned
+  // i tempo i faner der ikke er aktive, så den stadig når at udløse selvom du
+  // arbejder i en anden fane eller et andet program.
+  function tick(){
+    if (!running || targetTime === null) return;
+    if (Date.now() >= targetTime){
+      trigger();
+      armNextTarget();
+    }
+    updateCountdown();
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", function(){
+      running = !running;
+      if (running){
+        toggleBtn.textContent = "Stop påmindelse";
+        statusEl.textContent = "Påmindelse aktiv hvert " + intervalSel.value + ". minut, med lyd, også når du er på en anden side eller i en anden fane.";
+        banner.classList.remove("show");
+        // Oprettes på et klik (brugerinteraktion), så browseren tillader lyd senere uden nyt klik.
+        if (!audioCtx) { try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){} }
+        armNextTarget();
+        updateCountdown();
+        if (!tickHandle) tickHandle = setInterval(tick, 1000);
+      } else {
+        toggleBtn.textContent = "Start påmindelse";
+        statusEl.textContent = "Ingen påmindelse er sat.";
+        banner.classList.remove("show");
+        targetTime = null;
+        updateCountdown();
+        if (tickHandle){ clearInterval(tickHandle); tickHandle = null; }
+      }
+    });
+  }
+  if (banner) {
+    banner.addEventListener("click", function(){ banner.classList.remove("show"); });
+  }
+
+  document.querySelectorAll(".carousel-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var wrap = btn.closest(".aid-carousel-wrap");
+      var track = wrap && wrap.querySelector(".aid-carousel");
+      if (!track) return;
+      var card = track.querySelector(".aid-card");
+      var step = card ? card.getBoundingClientRect().width + 16 : 260;
+      track.scrollBy({ left: step * parseInt(btn.getAttribute("data-dir"), 10), behavior: "smooth" });
+    });
+  });
+
+  // Print: force open any collapsed <details> so nothing is missing on paper.
+  var reopenList = [];
+  window.addEventListener("beforeprint", function(){
+    reopenList = [];
+    document.querySelectorAll("details:not([open])").forEach(function(d){
+      reopenList.push(d);
+      d.setAttribute("open", "");
+    });
+  });
+  window.addEventListener("afterprint", function(){
+    reopenList.forEach(function(d){ d.removeAttribute("open"); });
+    reopenList = [];
+  });
+})();
+</script>
